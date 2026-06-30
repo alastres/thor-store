@@ -10,7 +10,7 @@ const REVIEWS = [
 function Stars() {
   return (
     <div className="flex gap-0.5 mb-3">
-      {Array.from({length:5}).map((_,i) => <Star key={i} size={12} weight="fill" className="text-lime"/>)}
+      {Array.from({length:5}).map((_,i) => <Star key={i} size={12} weight="fill" style={{ color: '#FFD700', filter: 'drop-shadow(0 0 3px rgba(255,215,0,.6))' }}/>)}
     </div>
   )
 }

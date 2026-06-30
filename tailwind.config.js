@@ -5,10 +5,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#060608',
+        background: '#080808',
         surface:  { 1: '#0c0c10', 2: '#111118' },
-        lime:     { DEFAULT: '#C9F105', dark: '#a8cc00' },
-        pink:     { DEFAULT: '#FA2588' },
+        lime:     { DEFAULT: '#C8FF00', dark: '#a8cc00' },
+        pink:     { DEFAULT: '#FF3EA5' },
+        cyan:     { DEFAULT: '#00F0FF' },
+        yellow:   { DEFAULT: '#FFD700' },
+        orange:   { DEFAULT: '#FF6B00' },
         offwhite: '#FBFBF8',
         border:   'rgba(255,255,255,0.08)',
       },

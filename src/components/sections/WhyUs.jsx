@@ -3,10 +3,10 @@ import BorderGlow from '@/components/ui/BorderGlow'
 import { Button } from '@/components/ui/button'
 
 const FEATURES = [
-  { Icon: PawPrint,         title: 'Son nuestros compañeros', desc: 'Probados primero por nuestros peludos.' },
-  { Icon: Certificate, title: 'Calidad Certificada',     desc: 'Estándares de alimentación humana.' },
-  { Icon: Leaf,        title: 'Solo Natural',            desc: 'Sin conservantes ni colorantes.' },
-  { Icon: Headset,     title: 'Soporte 24h',             desc: 'Siempre disponibles para ti.' },
+  { Icon: PawPrint,    title: 'Son nuestros compañeros', desc: 'Probados primero por nuestros peludos.', color: '#C8FF00', bg: 'rgba(200,255,0,.07)',   border: 'rgba(200,255,0,.14)'   },
+  { Icon: Certificate, title: 'Calidad Certificada',     desc: 'Estándares de alimentación humana.',    color: '#00F0FF', bg: 'rgba(0,240,255,.07)',   border: 'rgba(0,240,255,.14)'   },
+  { Icon: Leaf,        title: 'Solo Natural',            desc: 'Sin conservantes ni colorantes.',       color: '#FFD700', bg: 'rgba(255,215,0,.07)',   border: 'rgba(255,215,0,.14)'   },
+  { Icon: Headset,     title: 'Soporte 24h',             desc: 'Siempre disponibles para ti.',          color: '#FF6B00', bg: 'rgba(255,107,0,.07)',   border: 'rgba(255,107,0,.14)'   },
 ]
 
 export default function WhyUs() {
@@ -34,10 +34,10 @@ export default function WhyUs() {
         </div>
 
         <div className="grid grid-cols-2 gap-3">
-          {FEATURES.map(({ Icon, title, desc }) => (
+          {FEATURES.map(({ Icon, title, desc, color, bg, border }) => (
             <BorderGlow key={title} variant="mixed" borderRadius={14} glowRadius={28} edgeSensitivity={22} className="p-5">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3.5 bg-lime/7 border border-lime/14">
-                <Icon size={18} weight="duotone" className="text-lime" />
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3.5" style={{ background: bg, border: `1px solid ${border}` }}>
+                <Icon size={18} weight="duotone" style={{ color }} />
               </div>
               <p className="text-[13px] font-bold mb-1.5">{title}</p>
               <p className="text-[11px] leading-relaxed text-offwhite/30">{desc}</p>

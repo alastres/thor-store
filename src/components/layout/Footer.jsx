@@ -56,8 +56,8 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/[.05] pt-4 flex items-center justify-between">
-          <span className="text-[10px] text-offwhite/12">© 2024 La Cocina de Thor</span>
-          <span className="text-[10px] text-offwhite/12">Hecho con <span className="text-lime">⚡</span> para tus peludos</span>
+          <span className="text-[10px] text-offwhite/12">© 2026 La Cocina de Thor</span>
+          <span className="text-[10px] text-offwhite/12">Hecho con <span className="text-lime">AMOR</span> para tus peludos</span>
         </div>
       </div>
     </footer>

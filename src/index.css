@@ -10,7 +10,7 @@
     max-width: 100vw;
   }
   body {
-    background: #060608;
+    background: #080808;
     color: #FBFBF8;
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -19,17 +19,25 @@
   }
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: #0c0c10; }
-  ::-webkit-scrollbar-thumb { background: rgba(201,241,5,.35); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb { background: rgba(200,255,0,.35); border-radius: 3px; }
 }
 
 @layer components {
   .grad-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(130deg, #FBFBF8 0%, #C9F105 55%);
+    background-image: linear-gradient(130deg, #FBFBF8 0%, #C8FF00 55%);
   }
   .grad-text-pink {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(130deg, #FBFBF8 0%, #FA2588 65%);
+    background-image: linear-gradient(130deg, #FBFBF8 0%, #FF3EA5 65%);
+  }
+  .grad-text-cyan {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(130deg, #FBFBF8 0%, #00F0FF 65%);
+  }
+  .grad-text-orange {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(130deg, #FFD700 0%, #FF6B00 65%);
   }
   .glass {
     background: rgba(12,12,16,.72);
@@ -40,9 +48,15 @@
   }
   /* subtle ambient glow behind sections — CSS only, no JS */
   .glow-lime {
-    box-shadow: 0 0 80px -20px rgba(201,241,5,.12);
+    box-shadow: 0 0 80px -20px rgba(200,255,0,.12);
   }
   .glow-pink {
-    box-shadow: 0 0 80px -20px rgba(250,37,136,.12);
+    box-shadow: 0 0 80px -20px rgba(255,62,165,.12);
+  }
+  .glow-cyan {
+    box-shadow: 0 0 80px -20px rgba(0,240,255,.12);
+  }
+  .glow-orange {
+    box-shadow: 0 0 80px -20px rgba(255,107,0,.12);
   }
 }

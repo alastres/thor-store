@@ -10,16 +10,16 @@ import NeonMesh from '@/components/ui/NeonMesh'
 
 function TrustStrip() {
   const items = [
-    { Icon: Lock,                  label: 'Pago SSL seguro' },
-    { Icon: ArrowCounterClockwise, label: 'Devolución 30 días' },
-    { Icon: Truck,                 label: 'Envío gratis +30€' },
-    { Icon: Lightning,             label: 'Entrega 24h' },
+    { Icon: Lock,                  label: 'Pago SSL seguro',    color: '#00F0FF' },
+    { Icon: ArrowCounterClockwise, label: 'Devolución 30 días', color: '#FFD700' },
+    { Icon: Truck,                 label: 'Envío gratis +30€',  color: '#C8FF00' },
+    { Icon: Lightning,             label: 'Entrega 24h',        color: '#FF6B00' },
   ]
   return (
     <div className="bg-surface-1 px-6 py-3.5 flex flex-wrap items-center justify-center gap-6 border-y border-white/[.05]">
-      {items.map(({ Icon, label }) => (
+      {items.map(({ Icon, label, color }) => (
         <span key={label} className="text-[12px] text-offwhite/35 flex items-center gap-1.5">
-          <Icon size={13} weight="regular" className="text-offwhite/45 shrink-0" /> {label}
+          <Icon size={13} weight="fill" style={{ color, filter: `drop-shadow(0 0 4px ${color}88)` }} className="shrink-0" /> {label}
         </span>
       ))}
       <div className="flex gap-2">
