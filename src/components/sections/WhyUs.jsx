@@ -1,0 +1,50 @@
+import { PawPrint, Certificate, Leaf, Headset, ArrowSquareOut } from '@phosphor-icons/react'
+import BorderGlow from '@/components/ui/BorderGlow'
+import { Button } from '@/components/ui/button'
+
+const FEATURES = [
+  { Icon: PawPrint,         title: 'Son nuestros compañeros', desc: 'Probados primero por nuestros peludos.' },
+  { Icon: Certificate, title: 'Calidad Certificada',     desc: 'Estándares de alimentación humana.' },
+  { Icon: Leaf,        title: 'Solo Natural',            desc: 'Sin conservantes ni colorantes.' },
+  { Icon: Headset,     title: 'Soporte 24h',             desc: 'Siempre disponibles para ti.' },
+]
+
+export default function WhyUs() {
+  return (
+    <section className="relative py-20 px-6 md:px-12 overflow-hidden" style={{ background: 'transparent' }}>
+      {/* static gradient */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 55% 50% at 15% 50%, rgba(250,37,136,.06) 0%, transparent 70%)' }} />
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center relative z-10">
+        <div>
+          <span className="block text-[10px] font-bold tracking-[2px] uppercase text-lime mb-3">Por qué elegirnos</span>
+          <h2 className="text-[32px] font-black leading-tight tracking-tight mb-5">
+            Sabemos lo que hacemos y{' '}
+            <span className="grad-text-pink">amamos a los peludos</span>
+          </h2>
+          <p className="text-[14px] leading-relaxed text-offwhite/38 mb-8 max-w-md">
+            Todos nuestros productos tienen las mismas condiciones sanitarias y de calidad que los alimentos para personas.
+          </p>
+          <Button variant="lime" size="md" asChild>
+            <a href="https://www.amazon.es/s?k=alfcan&crid=1F5D57SH968BS&sprefix=%2Caps%2C140&ref=nb_sb_ss_recent_1_0_recent" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+              <ArrowSquareOut size={14} weight="bold"/> Comprar en Amazon
+            </a>
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
+          {FEATURES.map(({ Icon, title, desc }) => (
+            <BorderGlow key={title} variant="mixed" borderRadius={14} glowRadius={28} edgeSensitivity={22} className="p-5">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3.5 bg-lime/7 border border-lime/14">
+                <Icon size={18} weight="duotone" className="text-lime" />
+              </div>
+              <p className="text-[13px] font-bold mb-1.5">{title}</p>
+              <p className="text-[11px] leading-relaxed text-offwhite/30">{desc}</p>
+            </BorderGlow>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

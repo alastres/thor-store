@@ -1,0 +1,123 @@
+/* ── Noise texture ── */
+.neon-mesh {
+  position: relative;
+  overflow: hidden;
+}
+
+.neon-mesh-dots {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  animation: noiseDrift 8s steps(1) infinite;
+}
+
+@keyframes noiseDrift {
+  0%   { transform: translate(0,    0);    }
+  12%  { transform: translate(-8px, 4px);  }
+  25%  { transform: translate(5px,  -6px); }
+  37%  { transform: translate(-4px, 8px);  }
+  50%  { transform: translate(7px,  -3px); }
+  62%  { transform: translate(-6px, 5px);  }
+  75%  { transform: translate(3px,  -7px); }
+  87%  { transform: translate(-5px, 2px);  }
+  100% { transform: translate(0,    0);    }
+}
+
+/* ── Orbs ── */
+.neon-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, opacity;
+}
+
+/* Lime orb 1 */
+.neon-orb-l1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle at center, rgba(201,241,5,0.35) 0%, transparent 68%);
+  filter: blur(50px);
+  top: -80px;
+  left: 5%;
+  animation: orbFloat1 10s ease-in-out infinite, orbColorL1 7s ease-in-out infinite;
+}
+
+/* Pink orb 1 */
+.neon-orb-p1 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle at center, rgba(250,37,136,0.32) 0%, transparent 65%);
+  filter: blur(55px);
+  top: 40px;
+  right: 8%;
+  animation: orbFloat2 13s ease-in-out infinite, orbColorP1 7s ease-in-out infinite;
+}
+
+/* Lime orb 2 */
+.neon-orb-l2 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle at center, rgba(201,241,5,0.18) 0%, transparent 70%);
+  filter: blur(48px);
+  bottom: -60px;
+  left: 35%;
+  animation: orbFloat3 16s ease-in-out infinite, orbColorL2 9s ease-in-out infinite;
+}
+
+/* Pink orb 2 */
+.neon-orb-p2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle at center, rgba(250,37,136,0.15) 0%, transparent 65%);
+  filter: blur(45px);
+  bottom: 20px;
+  right: 25%;
+  animation: orbFloat4 11s ease-in-out infinite, orbColorP2 9s ease-in-out infinite;
+}
+
+/* ── Float keyframes ── */
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0px,   0px)  scale(1);    }
+  33%       { transform: translate(70px, -50px) scale(1.12); }
+  66%       { transform: translate(-40px, 35px) scale(0.92); }
+}
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0px,   0px)  scale(1.05); }
+  40%       { transform: translate(-80px, 55px) scale(0.88); }
+  70%       { transform: translate(50px, -30px) scale(1.15); }
+}
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0px,  0px)  scale(0.95); }
+  50%       { transform: translate(60px,-60px) scale(1.18); }
+}
+@keyframes orbFloat4 {
+  0%, 100% { transform: translate(0px,   0px)  scale(1);    }
+  45%       { transform: translate(-55px, 45px) scale(1.1);  }
+}
+
+/* ── Color-pulse keyframes (lime ↔ fade) ── */
+@keyframes orbColorL1 {
+  0%, 100% { opacity: 0.9; }
+  50%       { opacity: 0.25; }
+}
+@keyframes orbColorL2 {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 0.15; }
+}
+/* ── Color-pulse keyframes (pink ↔ fade, offset so they alternate) ── */
+@keyframes orbColorP1 {
+  0%, 100% { opacity: 0.25; }
+  50%       { opacity: 0.95; }
+}
+@keyframes orbColorP2 {
+  0%, 100% { opacity: 0.15; }
+  50%       { opacity: 0.75; }
+}

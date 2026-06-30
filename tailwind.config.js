@@ -1,0 +1,44 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: ['class'],
+  content: ['./index.html', './src/**/*.{js,jsx}'],
+  theme: {
+    extend: {
+      colors: {
+        background: '#060608',
+        surface:  { 1: '#0c0c10', 2: '#111118' },
+        lime:     { DEFAULT: '#C9F105', dark: '#a8cc00' },
+        pink:     { DEFAULT: '#FA2588' },
+        offwhite: '#FBFBF8',
+        border:   'rgba(255,255,255,0.08)',
+      },
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      borderRadius: { lg: '12px', xl: '16px', '2xl': '20px' },
+      keyframes: {
+        shimmer:     { '0%': { backgroundPosition: '200% center' }, '100%': { backgroundPosition: '-200% center' } },
+        'float':     { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+        'pulse-dot': { '0%,100%': { opacity: '1' }, '50%': { opacity: '.3' } },
+        'border-beam': { '0%': { backgroundPosition: '0% 50%' }, '100%': { backgroundPosition: '300% 50%' } },
+        'fade-up':   { '0%': { opacity: '0', transform: 'translateY(16px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+        'fade-in':   { from: { opacity: '0' }, to: { opacity: '1' } },
+        'zoom-in-95':{ from: { opacity: '0', transform: 'scale(.95)' }, to: { opacity: '1', transform: 'scale(1)' } },
+        'slide-in-r':{ from: { transform: 'translateX(100%)' }, to: { transform: 'translateX(0)' } },
+        'slide-out-r':{ from: { transform: 'translateX(0)' }, to: { transform: 'translateX(100%)' } },
+        gshift:      { '0%,100%': { backgroundPosition: '0% 50%' }, '50%': { backgroundPosition: '100% 50%' } },
+      },
+      animation: {
+        shimmer:       'shimmer 4s linear infinite',
+        float:         'float 3.5s ease-in-out infinite',
+        'pulse-dot':   'pulse-dot 2s ease infinite',
+        'border-beam': 'border-beam 3s linear infinite',
+        'fade-up':     'fade-up .5s ease forwards',
+        'fade-in':     'fade-in .2s ease',
+        'zoom-in-95':  'zoom-in-95 .18s ease',
+        'slide-in-r':  'slide-in-r .28s ease',
+        'slide-out-r': 'slide-out-r .28s ease',
+        gshift:        'gshift 8s ease infinite',
+      },
+    },
+  },
+  plugins: [require('tailwindcss-animate')],
+}

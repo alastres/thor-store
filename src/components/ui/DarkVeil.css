@@ -1,0 +1,4 @@
+.darkveil-canvas {
+  display: block;
+  /* OGL sets inline width/height after resize — no CSS size needed */
+}
