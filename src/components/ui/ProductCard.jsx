@@ -75,7 +75,7 @@ export default function ProductCard({ product }) {
                   {discount && <span className="text-sm text-offwhite/22 line-through">{priceOld} €</span>}
                 </div>
                 <div className="flex gap-0.5 mb-4">
-                  {Array.from({length:5}).map((_,i) => <Star key={i} size={11} className="text-lime fill-lime"/>)}
+                  {Array.from({length:5}).map((_,i) => <Star key={i} size={11} weight="fill" style={{ color: '#FFD700', filter: 'drop-shadow(0 0 3px rgba(255,215,0,.5))' }}/>)}
                   <span className="text-[10px] text-offwhite/28 ml-1.5">+24 reseñas</span>
                 </div>
                 <div className="flex items-center gap-2 mb-4">

@@ -19,8 +19,8 @@ export default function FeaturedProducts() {
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <span className="block text-[10px] font-bold tracking-[2px] uppercase text-lime mb-1.5">Más Vendidos</span>
-            <h2 className="text-[32px] font-black tracking-tight">No te puede <span className="grad-text">faltar</span></h2>
+            <span className="block text-[10px] font-bold tracking-[2px] uppercase mb-1.5" style={{ color: '#FF3EA5' }}>Más Vendidos</span>
+            <h2 className="text-[32px] font-black tracking-tight">No te puede <span className="grad-text-pink">faltar</span></h2>
           </div>
           <div className="flex items-center gap-4 flex-wrap min-w-0">
             <Tabs value={active} onValueChange={setActive}>

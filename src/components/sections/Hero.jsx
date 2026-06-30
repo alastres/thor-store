@@ -4,6 +4,7 @@ import { ShieldCheck, Star, CheckCircle, ArrowRight } from '@phosphor-icons/reac
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import DarkVeil from '@/components/ui/DarkVeil'
+import CardBurst from '@/components/ui/CardBurst'
 import './HeroCard.css'
 
 const THOR_IMGS = [
@@ -81,6 +82,9 @@ function HeroProductCard() {
     <div ref={wrapRef} className="relative select-none"
       style={{ width: '100%', maxWidth: '400px', paddingTop: '52px' }}
       onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
+
+      {/* ── Burst particles — behind everything ── */}
+      <CardBurst />
 
       {/* ── Static frame — wider than the card, clips the tilting photo so it never pokes out ── */}
       <div className="absolute z-10 pointer-events-none rounded-t-[28px] overflow-hidden"
@@ -231,19 +235,20 @@ export default function Hero() {
 
         {/* Copy */}
         <div className="animate-fade-up" style={{ animationDelay: '0ms', animationFillMode: 'both' }}>
-          <div className="inline-flex items-center gap-2 bg-lime/7 border border-lime/25 rounded-full px-4 py-1.5 mb-6">
-            <span className="w-2 h-2 bg-lime rounded-full animate-pulse-dot shadow-[0_0_6px_rgba(201,241,5,.8)]" />
-            <span className="text-[10px] font-bold tracking-[1.8px] uppercase text-lime">100% Natural · Premium Quality</span>
+          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6"
+            style={{ background: 'linear-gradient(90deg,rgba(0,240,255,.07),rgba(200,255,0,.07))', border: '1px solid rgba(0,240,255,.2)' }}>
+            <span className="w-2 h-2 rounded-full animate-pulse-dot" style={{ background: '#00F0FF', boxShadow: '0 0 6px rgba(0,240,255,.8)' }} />
+            <span className="text-[10px] font-bold tracking-[1.8px] uppercase" style={{ color: '#00F0FF' }}>100% Natural · Premium Quality</span>
           </div>
 
           <h1 className="text-[36px] md:text-[50px] font-black leading-[1.05] tracking-[-2px] mb-4">
-            La Nutrición<br />que Tu Mascota<br />
+            La <span className="grad-text-cyan">Nutrición</span><br />que Tu Mascota<br />
             <span className="grad-text">Merece</span> ⚡
           </h1>
 
           <p className="text-[15px] leading-relaxed text-offwhite/42 mb-2">Alimentación premium sin conservantes ni artificiales.</p>
-          <p className="text-[13px] font-bold text-lime mb-7" style={{ textShadow: '0 0 10px rgba(201,241,5,.35)' }}>
-            ⚡ 15 años y 10,000+ animales felices nos avalan.
+          <p className="text-[13px] font-bold mb-7" style={{ color: '#FF6B00', textShadow: '0 0 10px rgba(255,107,0,.35)' }}>
+            🔥 15 años y 10,000+ animales felices nos avalan.
           </p>
 
           <div className="flex flex-wrap gap-3 mb-7">
@@ -256,9 +261,14 @@ export default function Hero() {
           </div>
 
           <div className="flex flex-wrap gap-5">
-            {[[CheckCircle,'Certificado'],[Star,'10K+ Felices'],[ShieldCheck,'SSL Seguro']].map(([Icon, label]) => (
-              <span key={label} className="text-[11px] text-offwhite/30 flex items-center gap-1.5">
-                <Icon size={13} weight="fill" className="text-lime" /> {label}
+            {[
+              [CheckCircle, 'Certificado',  '#C8FF00', 'rgba(200,255,0,.15)'],
+              [Star,        '10K+ Felices', '#FFD700', 'rgba(255,215,0,.15)'],
+              [ShieldCheck, 'SSL Seguro',   '#00F0FF', 'rgba(0,240,255,.15)'],
+            ].map(([Icon, label, color, bg]) => (
+              <span key={label} className="text-[11px] flex items-center gap-1.5 px-2.5 py-1 rounded-full"
+                style={{ color, background: bg, border: `1px solid ${color}22` }}>
+                <Icon size={13} weight="fill" /> {label}
               </span>
             ))}
           </div>

@@ -1,16 +1,50 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '@/components/ui/Logo'
 
-const SocialIcons = {
-  instagram: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>,
-  facebook:  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>,
-  youtube:   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>,
+const SOCIALS = [
+  {
+    key: 'instagram',
+    color: '#FF3EA5',
+    glow: 'rgba(255,62,165,.35)',
+    icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>,
+  },
+  {
+    key: 'facebook',
+    color: '#00F0FF',
+    glow: 'rgba(0,240,255,.35)',
+    icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>,
+  },
+  {
+    key: 'youtube',
+    color: '#FF6B00',
+    glow: 'rgba(255,107,0,.35)',
+    icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>,
+  },
+]
+
+function SocialBtn({ social }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <button
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 cursor-pointer"
+      style={{
+        background: hovered ? `${social.color}18` : 'rgba(255,255,255,.04)',
+        border: `1px solid ${hovered ? social.color + '55' : 'rgba(255,255,255,.08)'}`,
+        color: hovered ? social.color : 'rgba(251,251,248,.3)',
+        boxShadow: hovered ? `0 0 12px ${social.glow}` : 'none',
+      }}>
+      {social.icon}
+    </button>
+  )
 }
 
-const COL = {
-  Productos: [['Perro','/tienda'],['Gato','/tienda'],['Latas','/tienda'],['Salchichas','/tienda']],
-  Empresa:   [['Quiénes somos','/'],['Blog','/'],['Contacto','/'],['Amazon','/',true]],
-}
+const COL = [
+  { title: 'Productos', color: '#C8FF00', links: [['Perro','/tienda'],['Gato','/tienda'],['Latas','/tienda'],['Salchichas','/tienda']] },
+  { title: 'Empresa',   color: '#00F0FF', links: [['Quiénes somos','/'],['Blog','/'],['Contacto','/'],['Amazon','/',true]] },
+]
 
 export default function Footer() {
   return (
@@ -24,29 +58,30 @@ export default function Footer() {
               Alimentación 100% natural y premium para tus peludos.
             </p>
             <div className="flex gap-2">
-              {Object.values(SocialIcons).map((icon, i) => (
-                <button key={i} className="w-8 h-8 rounded-lg bg-white/4 border border-white/8 flex items-center justify-center hover:bg-white/8 hover:border-lime/20 transition-all cursor-pointer text-offwhite/30 hover:text-offwhite/60">
-                  {icon}
-                </button>
-              ))}
+              {SOCIALS.map(s => <SocialBtn key={s.key} social={s} />)}
             </div>
           </div>
 
-          {Object.entries(COL).map(([title, links]) => (
+          {COL.map(({ title, color, links }) => (
             <div key={title}>
-              <p className="text-[10px] font-bold tracking-[1.8px] uppercase mb-1">{title}</p>
-              <div className="w-5 h-px bg-gradient-to-r from-lime/70 to-transparent mb-4" />
+              <p className="text-[10px] font-bold tracking-[1.8px] uppercase mb-1" style={{ color }}>{title}</p>
+              <div className="w-5 h-px mb-4" style={{ background: `linear-gradient(to right,${color}99,transparent)` }} />
               <div className="flex flex-col gap-2.5">
-                {links.map(([label, to, pink]) => (
-                  <Link key={label} to={to} className={`text-[12px] transition-colors ${pink ? 'text-pink font-semibold hover:text-pink/70' : 'text-offwhite/22 hover:text-lime'}`}>{label}</Link>
+                {links.map(([label, to, accent]) => (
+                  <Link key={label} to={to}
+                    className="text-[12px] transition-colors"
+                    style={{ color: accent ? '#FF3EA5' : 'rgba(251,251,248,.22)' }}
+                    onMouseEnter={e => e.currentTarget.style.color = color}
+                    onMouseLeave={e => e.currentTarget.style.color = accent ? '#FF3EA5' : 'rgba(251,251,248,.22)'}
+                  >{label}</Link>
                 ))}
               </div>
             </div>
           ))}
 
           <div>
-            <p className="text-[10px] font-bold tracking-[1.8px] uppercase mb-1">Contacto</p>
-            <div className="w-5 h-px bg-gradient-to-r from-lime/70 to-transparent mb-4" />
+            <p className="text-[10px] font-bold tracking-[1.8px] uppercase mb-1" style={{ color: '#FF6B00' }}>Contacto</p>
+            <div className="w-5 h-px mb-4" style={{ background: 'linear-gradient(to right,rgba(255,107,0,.7),transparent)' }} />
             <div className="flex flex-col gap-2 text-[12px] text-offwhite/20">
               <span>Lun–Vie 9:00–19:00</span>
               <span>info@lacocinadethor.es</span>

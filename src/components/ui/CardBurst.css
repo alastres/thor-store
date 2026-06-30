@@ -1,0 +1,36 @@
+/* Container centered on the deep card rectangle (cardRef)
+   cardRef starts at wrapRef paddingTop=52px, height≈424px → center ≈ 52+212 = 264px
+   z-index: -1 puts particles behind ALL wrapRef content (isolation:isolate on wrap contains it) */
+.card-burst-root {
+  position: absolute;
+  top: 264px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: visible;
+}
+
+/* Each particle starts at 0,0 and bursts outward */
+.card-burst-particle {
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  animation:
+    cardBurstMove var(--dur) ease-out var(--delay) infinite,
+    cardBurstPulse calc(var(--dur) * 1.5) ease-in-out var(--delay) infinite;
+}
+
+@keyframes cardBurstMove {
+  0%   { transform: translate(0, 0) scale(30);    opacity: 0; }
+  8%   { opacity: 0.85; }
+  85%  { opacity: 0.5; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(0.15); opacity: 0; }
+}
+
+@keyframes cardBurstPulse {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.8) saturate(1.5); }
+}

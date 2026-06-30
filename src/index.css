@@ -59,4 +59,47 @@
   .glow-orange {
     box-shadow: 0 0 80px -20px rgba(255,107,0,.12);
   }
+
+  /* ── Page transition — plays on every route mount ── */
+  @keyframes pageEnter {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page-enter {
+    animation: pageEnter 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* ── Dialog enter/exit (Radix data-state) ── */
+  @keyframes overlayShow {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes overlayHide {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+  @keyframes contentShow {
+    from { opacity: 0; transform: translate(-50%, -48%) scale(.94); }
+    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+  @keyframes contentHide {
+    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    to   { opacity: 0; transform: translate(-50%, -52%) scale(.96); }
+  }
+  [data-radix-dialog-overlay][data-state='open']  { animation: overlayShow 0.22s ease forwards; }
+  [data-radix-dialog-overlay][data-state='closed'] { animation: overlayHide 0.18s ease forwards; }
+  [data-radix-dialog-content][data-state='open']  { animation: contentShow 0.26s cubic-bezier(0.22,1,0.36,1) forwards; }
+  [data-radix-dialog-content][data-state='closed'] { animation: contentHide 0.18s ease forwards; }
+
+  /* ── Sheet (mobile nav) enter/exit ── */
+  @keyframes sheetIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to   { transform: translateX(0);   opacity: 1; }
+  }
+  @keyframes sheetOut {
+    from { transform: translateX(0);   opacity: 1; }
+    to   { transform: translateX(100%); opacity: 0; }
+  }
+  [data-radix-dialog-content][data-state='open'].slide-in-from-right  { animation: sheetIn  0.28s cubic-bezier(0.22,1,0.36,1) forwards; }
+  [data-radix-dialog-content][data-state='closed'].slide-in-from-right { animation: sheetOut 0.22s ease forwards; }
 }

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import '@/components/ui/WhatsAppFAB.css'
 import { CartProvider } from '@/context/CartContext'
 import Header from '@/components/layout/Header'
@@ -43,6 +43,21 @@ function WhatsAppFAB() {
   )
 }
 
+function AnimatedRoutes() {
+  const location = useLocation()
+  return (
+    <main key={location.pathname} className="flex-1 page-enter">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/tienda" element={<Shop />} />
+        <Route path="/producto/:slug" element={<ProductDetail />} />
+        <Route path="/carrito" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
+    </main>
+  )
+}
+
 export default function App() {
   return (
     <CartProvider>
@@ -50,15 +65,7 @@ export default function App() {
         <div className="min-h-screen bg-background flex flex-col" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
           <Header />
           <div className="h-16" />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/tienda" element={<Shop />} />
-              <Route path="/producto/:slug" element={<ProductDetail />} />
-              <Route path="/carrito" element={<Cart />} />
-              <Route path="/checkout" element={<Checkout />} />
-            </Routes>
-          </main>
+          <AnimatedRoutes />
           <Footer />
           <WhatsAppFAB />
         </div>

@@ -7,6 +7,7 @@ import Testimonials from '@/components/sections/Testimonials'
 import FAQ from '@/components/sections/FAQ'
 import Newsletter from '@/components/sections/Newsletter'
 import NeonMesh from '@/components/ui/NeonMesh'
+import Reveal from '@/components/ui/Reveal'
 
 function TrustStrip() {
   const items = [
@@ -35,15 +36,29 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <TrustStrip />
+      <Reveal from="bottom" delay={0}>
+        <TrustStrip />
+      </Reveal>
       <NeonMesh style={{ background: '#060608' }}>
-        <FeaturedProducts />
-        <Stats />
-        <WhyUs />
+        <Reveal from="bottom" delay={0}>
+          <FeaturedProducts />
+        </Reveal>
+        <Reveal from="bottom" delay={60}>
+          <Stats />
+        </Reveal>
+        <Reveal from="bottom" delay={80}>
+          <WhyUs />
+        </Reveal>
       </NeonMesh>
-      <Testimonials />
-      <FAQ />
-      <Newsletter />
+      <Reveal from="bottom" delay={0}>
+        <Testimonials />
+      </Reveal>
+      <Reveal from="bottom" delay={0}>
+        <FAQ />
+      </Reveal>
+      <Reveal from="bottom" delay={0}>
+        <Newsletter />
+      </Reveal>
     </>
   )
 }
