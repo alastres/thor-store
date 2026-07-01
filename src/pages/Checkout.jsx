@@ -17,7 +17,7 @@ const FIELDS = [
 ]
 
 export default function Checkout() {
-  useSEO({ title: 'Finalizar Pedido', path: '/checkout', noindex: true })
+  useSEO({ title: 'Finalizar Pedido', noindex: true })
 
   const { items, totalPrice, dispatch } = useCart()
   const [form, setForm]       = useState({})

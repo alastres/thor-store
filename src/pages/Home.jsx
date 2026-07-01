@@ -37,7 +37,6 @@ export default function Home() {
   useSEO({
     title: 'Alimentación Natural Premium para Perros y Gatos',
     description: 'Comida natural para perros y gatos sin conservantes ni aditivos. 15 años y 10.000+ mascotas felices nos avalan. Envío gratis desde 30€.',
-    path: '/',
   })
 
   return (

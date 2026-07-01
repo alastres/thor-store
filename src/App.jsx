@@ -65,7 +65,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <CartProvider>
-      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      <BrowserRouter basename={import.meta.env.BASE_URL} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <div className="min-h-screen bg-background flex flex-col" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
           <Header />
           <div className="h-16" />

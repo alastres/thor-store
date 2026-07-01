@@ -17,7 +17,6 @@ export default function Nosotros() {
   useSEO({
     title: 'Nuestra Historia',
     description: 'Conoce la historia de Thor, el perro que inspiró La Cocina de Thor. Doce años de familia convertidos en una marca de alimentación natural para mascotas.',
-    path: '/nosotros',
     image: '/assets/thor-dog.webp',
   })
 

@@ -7,7 +7,7 @@ import PageBg from '@/components/ui/PageBg'
 import useSEO from '@/hooks/useSEO'
 
 export default function Cart() {
-  useSEO({ title: 'Carrito', path: '/carrito', noindex: true })
+  useSEO({ title: 'Carrito', noindex: true })
 
   const { items, totalItems, totalPrice, dispatch } = useCart()
 

@@ -57,7 +57,6 @@ export default function Contacto() {
   useSEO({
     title: 'Contacto',
     description: 'Contacta con La Cocina de Thor para dudas sobre productos, pedidos o alimentación natural para mascotas. Respondemos en menos de 24 horas.',
-    path: '/contacto',
   })
 
   const [form, setForm] = useState({ name: '', email: '', subject: SUBJECTS[0], message: '' })

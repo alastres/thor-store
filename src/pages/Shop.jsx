@@ -9,7 +9,6 @@ export default function Shop() {
   useSEO({
     title: 'Tienda Online',
     description: 'Descubre nuestra gama de comida natural para perros y gatos: latas, snacks y salchichas 100% naturales sin conservantes. Envío gratis desde 30€.',
-    path: '/tienda',
   })
 
   const [cat, setCat] = useState('todos')

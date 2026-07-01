@@ -23,7 +23,6 @@ export default function ProductDetail() {
   useSEO({
     title: product.name,
     description: product.short_description || `Compra ${product.name} — alimentación natural premium para tu mascota, sin conservantes ni aditivos.`,
-    path: `/producto/${product.slug}`,
   })
 
   function addToCart() {
