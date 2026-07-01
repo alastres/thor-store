@@ -4,12 +4,13 @@ import { ShieldCheck, Star, CheckCircle, ArrowRight, PawPrint, Heart, Fire, Stor
 import { Button } from '@/components/ui/button'
 import DarkVeil from '@/components/ui/DarkVeil'
 import CardBurst from '@/components/ui/CardBurst'
+import { asset } from '@/lib/assetUrl'
 import './HeroCard.css'
 
 const THOR_IMGS = [
-  '/assets/thor-dog.webp',
-  '/assets/thor-dog2.webp',
-  '/assets/thor-dog3.webp',
+  asset('assets/thor-dog.webp'),
+  asset('assets/thor-dog2.webp'),
+  asset('assets/thor-dog3.webp'),
 ]
 
 function HeroProductCard() {
@@ -146,7 +147,7 @@ function HeroProductCard() {
 
           {/* ── Logo centrado y grande ── */}
           <div className="flex items-center justify-center px-6 py-6">
-            <img src="/assets/logotipo.webp" alt="La Cocina de Thor"
+            <img src={asset('assets/logotipo.webp')} alt="La Cocina de Thor"
               className="w-full object-contain"
               style={{ filter: 'drop-shadow(0 0 18px rgba(201,241,5,.45))' }}
             />

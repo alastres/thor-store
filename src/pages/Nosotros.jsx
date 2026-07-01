@@ -3,6 +3,7 @@ import { Heart, Leaf, Lightning, Users, PawPrint, ArrowRight } from '@phosphor-i
 import Reveal from '@/components/ui/Reveal'
 import PageBg from '@/components/ui/PageBg'
 import useSEO from '@/hooks/useSEO'
+import { asset } from '@/lib/assetUrl'
 import './Nosotros.css'
 
 const VALUES = [
@@ -98,7 +99,7 @@ export default function Nosotros() {
 
               {/* Foto — centrada, encuadre de busto hacia arriba, sobresale del recuadro. Sombra sigue la silueta del perro (PNG con transparencia) */}
               <div className="relative mx-auto" style={{ width: '76%', height: '380px' }}>
-                <img src="/assets/thor-dog.webp" alt="Thor, el perro que inspiró La Cocina de Thor"
+                <img src={asset('assets/thor-dog.webp')} alt="Thor, el perro que inspiró La Cocina de Thor"
                   className="w-full h-full object-cover"
                   style={{
                     objectPosition: '92% 12%',

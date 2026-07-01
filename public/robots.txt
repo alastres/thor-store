@@ -3,4 +3,4 @@ Allow: /
 Disallow: /carrito
 Disallow: /checkout
 
-Sitemap: https://www.lacocinadethor.es/sitemap.xml
+Sitemap: https://alastres.github.io/thor-store/sitemap.xml
