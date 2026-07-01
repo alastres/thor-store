@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Plus, ShoppingCart, Star, Fire, Plant, Eye } from '@phosphor-icons/react'
+import { Plus, ShoppingCart, Star, Fire, Plant, Eye, Dog, Cat, Bone, PawPrint, Check } from '@phosphor-icons/react'
 import BorderGlow from '@/components/ui/BorderGlow'
 import { CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { useCart } from '@/context/CartContext'
 
-const EMOJI = { perro: '🐕', gato: '🐈', snacks: '🦴', salchichas: '🌭', default: '🐾' }
+const CAT_ICONS = { perro: Dog, gato: Cat, snacks: Bone, salchichas: Bone, default: PawPrint }
 
 export default function ProductCard({ product }) {
   const { dispatch } = useCart()
@@ -16,7 +16,7 @@ export default function ProductCard({ product }) {
   const [qty, setQty]     = useState(1)
 
   const cat     = (product.categories?.[0]?.name ?? 'default').toLowerCase()
-  const emoji   = EMOJI[cat] ?? EMOJI.default
+  const CatIcon = CAT_ICONS[cat] ?? CAT_ICONS.default
   const isNew   = product.tags?.some(t => t.name.toLowerCase() === 'nuevo')
   const isPop   = product.tags?.some(t => t.name.toLowerCase() === 'popular')
   const discount = product.regular_price && parseFloat(product.regular_price) > parseFloat(product.price)
@@ -39,7 +39,7 @@ export default function ProductCard({ product }) {
           <div className="h-36 sm:h-40 flex items-center justify-center bg-gradient-to-br from-lime/5 to-surface-2 transition-colors duration-300">
             {product.images?.[0]?.src
               ? <img src={product.images[0].src} alt={product.name} className="h-full w-full object-cover" />
-              : <span className="text-5xl">{emoji}</span>
+              : <CatIcon size={40} weight="duotone" style={{ color: 'rgba(200,255,0,.45)' }} />
             }
           </div>
         </Link>
@@ -65,8 +65,8 @@ export default function ProductCard({ product }) {
               <DialogTitle>{product.name}</DialogTitle>
             </DialogHeader>
             <div className="grid grid-cols-2 gap-5 items-start">
-              <div className="h-44 rounded-xl flex items-center justify-center text-5xl bg-gradient-to-br from-lime/6 to-surface-2 border border-white/8">
-                {emoji}
+              <div className="h-44 rounded-xl flex items-center justify-center bg-gradient-to-br from-lime/6 to-surface-2 border border-white/8">
+                <CatIcon size={40} weight="duotone" style={{ color: 'rgba(200,255,0,.45)' }} />
               </div>
               <div>
                 <p className="text-[13px] text-offwhite/42 leading-relaxed mb-4">{product.short_description}</p>
@@ -119,7 +119,7 @@ export default function ProductCard({ product }) {
             onClick={() => addToCart(1)}
             className={`shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all ${added ? 'bg-lime/15 text-lime border border-lime/30' : 'bg-pink text-white border border-pink/0 hover:bg-pink/85'}`}
           >
-            {added ? <span className="text-[11px] font-bold">✓</span> : <Plus size={13}/>}
+            {added ? <Check size={11} weight="bold"/> : <Plus size={13}/>}
           </button>
         </div>
       </CardContent>

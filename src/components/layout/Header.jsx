@@ -7,10 +7,10 @@ import { useCart } from '@/context/CartContext'
 import Logo from '@/components/ui/Logo'
 
 const NAV = [
-  { to: '/',       label: 'Inicio'    },
-  { to: '/tienda', label: 'Tienda'    },
-  { to: '/',       label: 'Nosotros'  },
-  { to: '/',       label: 'Blog'      },
+  { to: '/',           label: 'Inicio'   },
+  { to: '/tienda',     label: 'Tienda'   },
+  { to: '/nosotros',   label: 'Nosotros' },
+  { to: '/contacto',   label: 'Contacto' },
 ]
 
 export default function Header() {
@@ -89,7 +89,7 @@ export default function Header() {
                   ))}
                   <div className="mt-4 pt-4 border-t border-white/8">
                     <Button variant="lime" size="md" className="w-full" asChild>
-                      <Link to="/tienda">🛒 Ir a la Tienda</Link>
+                      <Link to="/tienda" className="flex items-center gap-2 justify-center"><Bag size={14}/> Ir a la Tienda</Link>
                     </Button>
                   </div>
                 </nav>

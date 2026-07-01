@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { Lock, Check } from '@phosphor-icons/react'
+import { Lock, Check, CreditCard, DeviceMobile, Bank } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import BorderGlow from '@/components/ui/BorderGlow'
 import { useCart } from '@/context/CartContext'
+import useSEO from '@/hooks/useSEO'
 
 const FIELDS = [
   { name: 'firstName', label: 'Nombre',       type: 'text',  col: 1 },
@@ -16,6 +17,8 @@ const FIELDS = [
 ]
 
 export default function Checkout() {
+  useSEO({ title: 'Finalizar Pedido', path: '/checkout', noindex: true })
+
   const { items, totalPrice, dispatch } = useCart()
   const [form, setForm]       = useState({})
   const [done, setDone]       = useState(false)
@@ -67,9 +70,15 @@ export default function Checkout() {
             <div className="glass rounded-xl p-6">
               <h3 className="text-[14px] font-bold mb-4">Método de pago</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-                {['💳 Tarjeta', '🅿️ PayPal', '📱 Bizum', '🏦 Trans.'].map(m => (
-                  <label key={m} className="flex items-center justify-center gap-2 p-3 rounded-lg border border-white/10 bg-white/3 cursor-pointer hover:border-lime/30 text-[12px] font-semibold text-offwhite/55 transition-all">
-                    <input type="radio" name="payment" className="accent-lime"/> {m}
+                {[
+                  { Icon: CreditCard,   label: 'Tarjeta' },
+                  { Icon: null,         label: 'PayPal'  },
+                  { Icon: DeviceMobile, label: 'Bizum'   },
+                  { Icon: Bank,         label: 'Trans.'  },
+                ].map(({ Icon, label }) => (
+                  <label key={label} className="flex items-center justify-center gap-2 p-3 rounded-lg border border-white/10 bg-white/3 cursor-pointer hover:border-lime/30 text-[12px] font-semibold text-offwhite/55 transition-all">
+                    <input type="radio" name="payment" className="accent-lime"/>
+                    {Icon && <Icon size={14}/>} {label}
                   </label>
                 ))}
               </div>

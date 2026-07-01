@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowRight, EnvelopeSimple } from '@phosphor-icons/react'
+import { ArrowRight, EnvelopeSimple, Fire } from '@phosphor-icons/react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 
@@ -44,7 +44,7 @@ export default function Newsletter() {
         {sent
           ? <div className="rounded-xl px-6 py-5 text-center"
               style={{ border: '1px solid rgba(255,107,0,.3)', background: 'rgba(255,107,0,.07)' }}>
-              <span className="text-2xl mb-2 block">🔥</span>
+              <Fire size={28} weight="duotone" style={{ color: '#FF6B00' }} className="mx-auto mb-3 block" />
               <p className="text-[13px] font-bold" style={{ color: '#FF6B00' }}>¡Genial! Ya estás en la lista.</p>
               <p className="text-[11px] text-offwhite/30 mt-1">Revisa tu correo para obtener tu descuento.</p>
             </div>

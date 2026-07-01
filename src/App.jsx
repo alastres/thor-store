@@ -8,6 +8,8 @@ import Shop from '@/pages/Shop'
 import ProductDetail from '@/pages/ProductDetail'
 import Cart from '@/pages/Cart'
 import Checkout from '@/pages/Checkout'
+import Nosotros from '@/pages/Nosotros'
+import Contacto from '@/pages/Contacto'
 
 function WhatsAppFAB() {
   return (
@@ -50,6 +52,8 @@ function AnimatedRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tienda" element={<Shop />} />
+        <Route path="/nosotros" element={<Nosotros />} />
+        <Route path="/contacto" element={<Contacto />} />
         <Route path="/producto/:slug" element={<ProductDetail />} />
         <Route path="/carrito" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
@@ -61,7 +65,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <CartProvider>
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <div className="min-h-screen bg-background flex flex-col" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
           <Header />
           <div className="h-16" />

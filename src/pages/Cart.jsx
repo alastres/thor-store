@@ -1,16 +1,21 @@
 import { Link } from 'react-router-dom'
-import { Minus, Plus, Trash, ArrowRight, ShoppingBag } from '@phosphor-icons/react'
+import { Minus, Plus, Trash, ArrowRight, ShoppingBag, PawPrint } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import BorderGlow from '@/components/ui/BorderGlow'
 import { useCart } from '@/context/CartContext'
+import PageBg from '@/components/ui/PageBg'
+import useSEO from '@/hooks/useSEO'
 
 export default function Cart() {
+  useSEO({ title: 'Carrito', path: '/carrito', noindex: true })
+
   const { items, totalItems, totalPrice, dispatch } = useCart()
 
   if (items.length === 0) {
     return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center gap-5 px-6 text-center">
-        <span className="text-7xl">🛒</span>
+      <div className="relative min-h-[70vh] flex flex-col items-center justify-center gap-5 px-6 text-center overflow-hidden">
+        <PageBg />
+        <ShoppingBag size={64} weight="thin" className="text-offwhite/25" />
         <h2 className="text-2xl font-black">Tu carrito está vacío</h2>
         <p className="text-offwhite/35 text-[14px]">Añade productos para empezar</p>
         <Button variant="lime" size="md" asChild>
@@ -24,7 +29,8 @@ export default function Cart() {
   const total    = totalPrice + shipping
 
   return (
-    <div className="min-h-screen bg-background py-10 px-6 md:px-10">
+    <div className="relative min-h-screen bg-background py-10 px-6 md:px-10 overflow-hidden">
+      <PageBg />
       <div className="max-w-5xl mx-auto">
         <h1 className="text-3xl font-black mb-2">Tu <span className="grad-text">Carrito</span></h1>
         <p className="text-[13px] text-offwhite/35 mb-8">{totalItems} {totalItems === 1 ? 'producto' : 'productos'}</p>
@@ -34,7 +40,7 @@ export default function Cart() {
             {items.map(item => (
               <div key={item.id} className="glass rounded-xl p-4 flex items-center gap-4">
                 <div className="w-14 h-14 rounded-xl flex items-center justify-center text-3xl shrink-0"
-                  style={{ background: 'linear-gradient(135deg,rgba(201,241,5,.07),rgba(6,6,8,.95))' }}>🐾</div>
+                  style={{ background: 'linear-gradient(135deg,rgba(201,241,5,.07),rgba(6,6,8,.95))' }}><PawPrint size={24} weight="duotone" style={{ color: 'rgba(200,255,0,.5)' }}/></div>
                 <div className="flex-1 min-w-0">
                   <Link to={`/producto/${item.slug}`} className="text-[13px] font-bold hover:text-lime transition-colors line-clamp-1">{item.name}</Link>
                   <p className="text-[12px] text-offwhite/35">{item.category}</p>

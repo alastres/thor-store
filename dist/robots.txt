@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /carrito
+Disallow: /checkout
+
+Sitemap: https://www.lacocinadethor.es/sitemap.xml

@@ -2,8 +2,16 @@ import { useState, useMemo } from 'react'
 import { MagnifyingGlass } from '@phosphor-icons/react'
 import ProductCard from '@/components/ui/ProductCard'
 import { MOCK_PRODUCTS, MOCK_CATEGORIES } from '@/lib/woocommerce'
+import PageBg from '@/components/ui/PageBg'
+import useSEO from '@/hooks/useSEO'
 
 export default function Shop() {
+  useSEO({
+    title: 'Tienda Online',
+    description: 'Descubre nuestra gama de comida natural para perros y gatos: latas, snacks y salchichas 100% naturales sin conservantes. Envío gratis desde 30€.',
+    path: '/tienda',
+  })
+
   const [cat, setCat] = useState('todos')
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState('default')
@@ -18,7 +26,8 @@ export default function Shop() {
   }, [cat, query, sort])
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background overflow-hidden">
+      <PageBg />
       <div className="relative overflow-hidden py-14 px-6 md:px-10"
         style={{ background: 'linear-gradient(180deg,#0c0c12 0%,#060608 100%)' }}>
         <div className="max-w-7xl mx-auto relative z-10">

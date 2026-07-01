@@ -4,7 +4,7 @@ export default function Logo({ imageSize = 'h-9', textSize = 'text-[30px]' }) {
   return (
     <Link to="/" className="flex items-center gap-2.5 shrink-0">
       <img
-        src="/assets/isotipo.png"
+        src="/assets/isotipo.webp"
         alt="Thor"
         className={`${imageSize} w-auto`}
         style={{ filter: 'drop-shadow(0 0 8px rgba(201,241,5,.5))' }}

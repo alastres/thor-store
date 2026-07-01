@@ -1,16 +1,15 @@
 import { useRef, useCallback, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ShieldCheck, Star, CheckCircle, ArrowRight } from '@phosphor-icons/react'
+import { ShieldCheck, Star, CheckCircle, ArrowRight, PawPrint, Heart, Fire, Storefront } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import DarkVeil from '@/components/ui/DarkVeil'
 import CardBurst from '@/components/ui/CardBurst'
 import './HeroCard.css'
 
 const THOR_IMGS = [
-  '/assets/thor-dog.jpeg',
-  '/assets/thor-dog2.jpeg',
-  '/assets/thor-dog3.jpeg',
+  '/assets/thor-dog.webp',
+  '/assets/thor-dog2.webp',
+  '/assets/thor-dog3.webp',
 ]
 
 function HeroProductCard() {
@@ -130,56 +129,27 @@ function HeroProductCard() {
       {/* ── Floating badges ── */}
       <div className="badge-float-a absolute z-30 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-black text-black"
         style={{ top: '4px', left: '-4px', background: 'linear-gradient(135deg,#C9F105,#a8cc04)', boxShadow: '0 0 20px rgba(201,241,5,.55)' }}>
-        🐾 Nuestra inspiración
+        <PawPrint size={10} weight="fill" /> Nuestra inspiración
       </div>
       <div className="badge-float-b absolute z-30 flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[10px] font-black text-white"
         style={{ top: '8px', right: '-4px', background: 'linear-gradient(135deg,#FA2588,#c91060)', boxShadow: '0 0 18px rgba(250,37,136,.55)' }}>
-        15 años juntos
+        <Heart size={10} weight="fill" /> 15 años juntos
       </div>
 
       {/* ── Card (holo border + content) — wider than the photo frame above ── */}
-      <div ref={cardRef} className="hero-holo-border hero-card-inner rounded-[28px] p-px"
-        style={{ boxShadow: '0 30px 70px rgba(0,0,0,.6), 0 0 60px rgba(201,241,5,.08)', marginLeft: '-44px', marginRight: '-44px' }}>
+      <div ref={cardRef} className="hero-holo-border hero-card-inner card-bg-glow rounded-[28px] p-px"
+        style={{ marginLeft: '-44px', marginRight: '-44px' }}>
         <div className="rounded-[27px] overflow-hidden" style={{ background: '#060608' }}>
 
-          {/* Space reserved for dog photo overlap (frame: -26px to 294px from wrap top, card starts at 52px → 268px overlap) */}
+          {/* Space reserved for dog photo overlap */}
           <div style={{ height: '268px' }} />
 
-          {/* ── Logo + tagline ── */}
-          <div className="px-5 pb-5 space-y-4">
-            <div className="flex items-center gap-3">
-              <img src="/assets/logotipo.png" alt="La Cocina de Thor"
-                className="h-10 w-auto object-contain"
-                style={{ filter: 'drop-shadow(0 0 10px rgba(201,241,5,.3))' }}
-              />
-              <div className="w-px self-stretch bg-white/8" />
-              <p className="text-[12px] leading-snug text-offwhite/45">
-                El perro que nos enseñó<br />a cocinar con amor.
-              </p>
-            </div>
-
-            {/* Stats row */}
-            <div className="grid grid-cols-3 gap-2">
-              {[
-                ['15+', 'Años',     '#C8FF00', 'rgba(200,255,0,.15)',  'rgba(200,255,0,.18)'],
-                ['10K', 'Clientes', '#00F0FF', 'rgba(0,240,255,.12)',  'rgba(0,240,255,.18)'],
-                ['100%','Natural',  '#FFD700', 'rgba(255,215,0,.12)',  'rgba(255,215,0,.18)'],
-              ].map(([val, label, color, bg, bdr]) => (
-                <div key={label} className="text-center rounded-lg py-2 px-1"
-                  style={{ background: bg, border: `1px solid ${bdr}` }}>
-                  <p className="text-[15px] font-black leading-none"
-                    style={{ color, textShadow: `0 0 12px ${color}99` }}>{val}</p>
-                  <p className="text-[9px] mt-0.5 tracking-wide" style={{ color: `${color}60` }}>{label}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <Button variant="lime" size="sm" className="w-full" asChild>
-              <Link to="/tienda" className="flex items-center justify-center gap-2">
-                Ver productos <ArrowRight size={13} weight="bold" />
-              </Link>
-            </Button>
+          {/* ── Logo centrado y grande ── */}
+          <div className="flex items-center justify-center px-6 py-6">
+            <img src="/assets/logotipo.webp" alt="La Cocina de Thor"
+              className="w-full object-contain"
+              style={{ filter: 'drop-shadow(0 0 18px rgba(201,241,5,.45))' }}
+            />
           </div>
         </div>
       </div>
@@ -187,7 +157,7 @@ function HeroProductCard() {
       {/* Bottom badge */}
       <div className="badge-float-c absolute -bottom-5 right-10 z-30 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold"
         style={{ background: 'rgba(255,255,255,.07)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,.12)', color: 'rgba(251,251,248,.65)' }}>
-        ❤️ Alimento con amor
+        <Heart size={11} weight="fill" style={{ color: '#FF3EA5' }} /> Alimento con amor
       </div>
     </div>
   )
@@ -234,39 +204,50 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center" style={{ minHeight: '580px' }}>
 
         {/* Copy */}
-        <div className="animate-fade-up" style={{ animationDelay: '0ms', animationFillMode: 'both' }}>
+        <div className="animate-fade-up self-start lg:mt-6" style={{ animationDelay: '0ms', animationFillMode: 'both' }}>
           <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6"
             style={{ background: 'linear-gradient(90deg,rgba(0,240,255,.07),rgba(200,255,0,.07))', border: '1px solid rgba(0,240,255,.2)' }}>
             <span className="w-2 h-2 rounded-full animate-pulse-dot" style={{ background: '#00F0FF', boxShadow: '0 0 6px rgba(0,240,255,.8)' }} />
             <span className="text-[10px] font-bold tracking-[1.8px] uppercase" style={{ color: '#00F0FF' }}>100% Natural · Premium Quality</span>
           </div>
 
-          <h1 className="text-[36px] md:text-[50px] font-black leading-[1.05] tracking-[-2px] mb-4">
-            La <span className="grad-text-cyan">Nutrición</span><br />que Tu Mascota<br />
-            <span className="grad-text">Merece</span> ⚡
+          <h1 className="font-black leading-[1.05] tracking-[-1px] uppercase mb-4">
+            <span className="block text-[26px] md:text-[36px] text-offwhite/95">Porque ellos</span>
+            <span className="block text-[26px] md:text-[36px] text-offwhite/95">no lo dicen,</span>
+            <span className="hero-slogan-sweep block text-[34px] md:text-[48px] mt-1">pero lo son todo.</span>
           </h1>
 
           <p className="text-[15px] leading-relaxed text-offwhite/42 mb-2">Alimentación premium sin conservantes ni artificiales.</p>
           <p className="text-[13px] font-bold mb-7" style={{ color: '#FF6B00', textShadow: '0 0 10px rgba(255,107,0,.35)' }}>
-            🔥 15 años y 10,000+ animales felices nos avalan.
+            <Fire size={14} weight="fill" style={{ color: '#FF6B00', display: 'inline', verticalAlign: 'middle' }} /> 15 años y 10,000+ animales felices nos avalan.
           </p>
 
-          <div className="flex flex-wrap gap-3 mb-7">
-            <Button variant="lime" size="lg" asChild>
-              <Link to="/tienda" className="flex items-center gap-2">Comprar Ahora <ArrowRight size={15} weight="bold"/></Link>
+          <div className="relative flex flex-wrap items-center gap-2 sm:gap-3 mb-7" style={{ isolation: 'isolate' }}>
+            {/* Glow pulsante detrás del CTA principal */}
+            <span className="absolute rounded-full pointer-events-none cta-glow-pulse"
+              style={{ left: '4px', top: '50%', width: '150px', height: '46px', transform: 'translateY(-50%)', zIndex: -1 }} />
+
+            <Button variant="lime" size="lg" asChild className="group relative px-4 sm:px-7 text-[13px] sm:text-base">
+              <Link to="/tienda" className="flex items-center gap-1.5 sm:gap-2 whitespace-nowrap">
+                Comprar Ahora
+                <ArrowRight size={15} weight="bold" className="transition-transform duration-300 group-hover:translate-x-1"/>
+              </Link>
             </Button>
-            <Button variant="ghost" size="lg" asChild>
-              <Link to="/tienda">Ver Catálogo</Link>
+            <Button variant="ghost" size="lg" asChild className="group px-4 sm:px-7 text-[13px] sm:text-base">
+              <Link to="/tienda" className="flex items-center gap-1.5 sm:gap-2 whitespace-nowrap">
+                <Storefront size={15} weight="regular" className="text-offwhite/45 transition-colors group-hover:text-lime"/>
+                Ver Catálogo
+              </Link>
             </Button>
           </div>
 
-          <div className="flex flex-wrap gap-5">
+          <div className="flex flex-wrap gap-x-2.5 gap-y-2 sm:gap-5">
             {[
               [CheckCircle, 'Certificado',  '#C8FF00', 'rgba(200,255,0,.15)'],
               [Star,        '10K+ Felices', '#FFD700', 'rgba(255,215,0,.15)'],
               [ShieldCheck, 'SSL Seguro',   '#00F0FF', 'rgba(0,240,255,.15)'],
             ].map(([Icon, label, color, bg]) => (
-              <span key={label} className="text-[11px] flex items-center gap-1.5 px-2.5 py-1 rounded-full"
+              <span key={label} className="text-[11px] flex items-center gap-1.5 px-2.5 py-1 rounded-full whitespace-nowrap"
                 style={{ color, background: bg, border: `1px solid ${color}22` }}>
                 <Icon size={13} weight="fill" /> {label}
               </span>

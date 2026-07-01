@@ -8,6 +8,7 @@ import FAQ from '@/components/sections/FAQ'
 import Newsletter from '@/components/sections/Newsletter'
 import NeonMesh from '@/components/ui/NeonMesh'
 import Reveal from '@/components/ui/Reveal'
+import useSEO from '@/hooks/useSEO'
 
 function TrustStrip() {
   const items = [
@@ -33,6 +34,12 @@ function TrustStrip() {
 }
 
 export default function Home() {
+  useSEO({
+    title: 'Alimentación Natural Premium para Perros y Gatos',
+    description: 'Comida natural para perros y gatos sin conservantes ni aditivos. 15 años y 10.000+ mascotas felices nos avalan. Envío gratis desde 30€.',
+    path: '/',
+  })
+
   return (
     <>
       <Hero />

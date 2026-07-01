@@ -25,12 +25,12 @@
 
 @keyframes cardBurstMove {
   0%   { transform: translate(0, 0) scale(30);    opacity: 0; }
-  8%   { opacity: 0.85; }
-  85%  { opacity: 0.5; }
+  8%   { opacity: 0.75; }
+  85%  { opacity: 0.4; }
   100% { transform: translate(var(--tx), var(--ty)) scale(0.15); opacity: 0; }
 }
 
 @keyframes cardBurstPulse {
   0%, 100% { filter: brightness(1); }
-  50%      { filter: brightness(1.8) saturate(1.5); }
+  50%      { filter: brightness(1.5) saturate(1.3); }
 }

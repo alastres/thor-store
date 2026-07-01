@@ -85,7 +85,7 @@ export default function Footer() {
             <div className="flex flex-col gap-2 text-[12px] text-offwhite/20">
               <span>Lun–Vie 9:00–19:00</span>
               <span>info@lacocinadethor.es</span>
-              <span>+34 684 41 01 99</span>
+              <span>+34 633 28 33 47</span>
             </div>
           </div>
         </div>
