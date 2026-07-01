@@ -118,11 +118,8 @@ export default function DarkVeil({
       cullFace: false,
       depthTest: false,
       uniforms: {
+        uResolution: { value: [0, 0] },
         uTime:       { value: 0 },
-        // uResolution intentionally absent from OGL's hash — OGL's uniform-upload
-        // cache overwrites it to [0,0] every frame via its setUniforms() call (cache
-        // compares by reference so mutated Vec2 appears unchanged, always re-emits 0,0).
-        // We set it manually each frame via gl.uniform2f just before the draw call.
         uHueShift:   { value: hueShift },
         uNoise:      { value: noiseIntensity },
         uScan:       { value: scanlineIntensity },
@@ -132,8 +129,6 @@ export default function DarkVeil({
     })
 
     const mesh = new Mesh(gl, { geometry, program })
-    // Locate uResolution directly — OGL's uniform system never touches it now
-    const uResolutionLoc = gl.getUniformLocation(program.program, 'uResolution')
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const start = performance.now()
@@ -151,8 +146,7 @@ export default function DarkVeil({
       program.uniforms.uScan.value     = scanlineIntensity
       program.uniforms.uScanFreq.value = scanlineFrequency
       program.uniforms.uWarp.value     = warpAmount
-      gl.useProgram(program.program)
-      gl.uniform2f(uResolutionLoc, canvas.width, canvas.height)
+      program.uniforms.uResolution.value = [canvas.width, canvas.height]
       renderer.render({ scene: mesh })
     }
 
@@ -190,10 +184,6 @@ export default function DarkVeil({
       // Re-apply the (patched) viewport now that canvas.width/height changed —
       // the patch only fixes whatever call triggers it, it doesn't run on its own
       gl.viewport(0, 0, canvas.width, canvas.height)
-      // uResolution is uploaded manually via gl.uniform2f in the render loop
-      // (removed from OGL's uniforms hash to bypass its broken caching for Vec2)
-      gl.useProgram(program.program)
-      gl.uniform2f(uResolutionLoc, canvas.width, canvas.height)
       if (!running) renderFrame()
     }
 

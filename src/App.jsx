@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { useLocation, BrowserRouter, Routes, Route } from 'react-router-dom'
 import '@/components/ui/WhatsAppFAB.css'
+import AppLoader from '@/components/ui/AppLoader'
 import { CartProvider } from '@/context/CartContext'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -64,16 +65,19 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
-    <CartProvider>
-      <BrowserRouter basename={import.meta.env.BASE_URL} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <div className="min-h-screen bg-background flex flex-col" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
-          <Header />
-          <div className="h-16" />
-          <AnimatedRoutes />
-          <Footer />
-          <WhatsAppFAB />
-        </div>
-      </BrowserRouter>
-    </CartProvider>
+    <>
+      <AppLoader />
+      <CartProvider>
+        <BrowserRouter basename={import.meta.env.BASE_URL} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <div className="min-h-screen bg-background flex flex-col" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
+            <Header />
+            <div className="h-16" />
+            <AnimatedRoutes />
+            <Footer />
+            <WhatsAppFAB />
+          </div>
+        </BrowserRouter>
+      </CartProvider>
+    </>
   )
 }
