@@ -20,6 +20,12 @@
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: #0c0c10; }
   ::-webkit-scrollbar-thumb { background: rgba(200,255,0,.35); border-radius: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
 
 @layer components {

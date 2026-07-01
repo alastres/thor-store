@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { Renderer, Program, Mesh, Triangle, Vec2 } from 'ogl'
+import { Renderer, Program, Mesh, Triangle } from 'ogl'
 import './DarkVeil.css'
 
 const vertex = `
@@ -82,6 +82,7 @@ export default function DarkVeil({
   scanlineFrequency = 0,
   warpAmount = 0,
   resolutionScale = 1,
+  maxFps = 30,
 }) {
   const ref = useRef(null)
 
@@ -134,6 +135,49 @@ export default function DarkVeil({
     // Locate uResolution directly — OGL's uniform system never touches it now
     const uResolutionLoc = gl.getUniformLocation(program.program, 'uResolution')
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const start = performance.now()
+    const frameMs = 1000 / Math.max(1, maxFps)
+    let frame = 0
+    let lastRender = 0
+    let inView = true
+    let pageVisible = document.visibilityState === 'visible'
+    let running = false
+
+    const renderFrame = (now = performance.now()) => {
+      program.uniforms.uTime.value     = ((now - start) / 1000) * speed
+      program.uniforms.uHueShift.value = hueShift
+      program.uniforms.uNoise.value    = noiseIntensity
+      program.uniforms.uScan.value     = scanlineIntensity
+      program.uniforms.uScanFreq.value = scanlineFrequency
+      program.uniforms.uWarp.value     = warpAmount
+      gl.useProgram(program.program)
+      gl.uniform2f(uResolutionLoc, canvas.width, canvas.height)
+      renderer.render({ scene: mesh })
+    }
+
+    const loop = (now) => {
+      if (!running) return
+      if (now - lastRender >= frameMs) {
+        lastRender = now
+        renderFrame(now)
+      }
+      frame = requestAnimationFrame(loop)
+    }
+
+    const updateLoop = () => {
+      const shouldRun = !prefersReducedMotion && inView && pageVisible
+      if (shouldRun && !running) {
+        running = true
+        lastRender = 0
+        frame = requestAnimationFrame(loop)
+      } else if (!shouldRun && running) {
+        running = false
+        cancelAnimationFrame(frame)
+        renderFrame()
+      }
+    }
+
     const resize = () => {
       const w = parent.offsetWidth  || window.innerWidth
       const h = parent.offsetHeight || window.innerHeight
@@ -150,38 +194,38 @@ export default function DarkVeil({
       // (removed from OGL's uniforms hash to bypass its broken caching for Vec2)
       gl.useProgram(program.program)
       gl.uniform2f(uResolutionLoc, canvas.width, canvas.height)
+      if (!running) renderFrame()
     }
 
     // ResizeObserver on the parent catches both initial layout and window resizes
     const ro = new ResizeObserver(resize)
     ro.observe(parent)
+    const io = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting
+      updateLoop()
+    }, { rootMargin: '160px 0px' })
+    io.observe(parent)
+    const onVisibilityChange = () => {
+      pageVisible = document.visibilityState === 'visible'
+      updateLoop()
+    }
+    document.addEventListener('visibilitychange', onVisibilityChange)
     // Also call after 100ms as insurance for slow-layout cases
     const t = setTimeout(resize, 100)
 
-    const start = performance.now()
-    let frame = 0
-
-    const loop = () => {
-      program.uniforms.uTime.value     = ((performance.now() - start) / 1000) * speed
-      program.uniforms.uHueShift.value = hueShift
-      program.uniforms.uNoise.value    = noiseIntensity
-      program.uniforms.uScan.value     = scanlineIntensity
-      program.uniforms.uScanFreq.value = scanlineFrequency
-      program.uniforms.uWarp.value     = warpAmount
-      gl.useProgram(program.program)
-      gl.uniform2f(uResolutionLoc, canvas.width, canvas.height)
-      renderer.render({ scene: mesh })
-      frame = requestAnimationFrame(loop)
-    }
-
-    loop()
+    resize()
+    renderFrame()
+    updateLoop()
 
     return () => {
+      running = false
       cancelAnimationFrame(frame)
       ro.disconnect()
+      io.disconnect()
+      document.removeEventListener('visibilitychange', onVisibilityChange)
       clearTimeout(t)
     }
-  }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale])
+  }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale, maxFps])
 
   return <canvas ref={ref} className="darkveil-canvas" />
 }

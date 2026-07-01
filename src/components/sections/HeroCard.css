@@ -14,11 +14,12 @@
 
 /* ── CTA glow pulse — soft lime breathing glow behind the primary Hero button ── */
 @keyframes ctaGlowPulse {
-  0%, 100% { opacity: .35; filter: blur(16px); transform: translateY(-50%) scale(1); }
-  50%      { opacity: .65; filter: blur(20px); transform: translateY(-50%) scale(1.12); }
+  0%, 100% { opacity: .32; transform: translateY(-50%) scale(1); }
+  50%      { opacity: .55; transform: translateY(-50%) scale(1.08); }
 }
 .cta-glow-pulse {
   background: radial-gradient(circle, rgba(200,255,0,.55) 0%, transparent 70%);
+  filter: blur(18px);
   animation: ctaGlowPulse 2.4s ease-in-out infinite;
 }
 
@@ -124,7 +125,7 @@
   80%     { box-shadow: 0 30px 70px rgba(0,0,0,.7), 0 0 28px rgba(255,107,0,.55),  0 0 70px rgba(255,107,0,.15),  0 0 140px rgba(255,107,0,.06);  }
 }
 .card-bg-glow {
-  animation: cardBgGlow 6s ease-in-out infinite;
+  box-shadow: 0 30px 70px rgba(0,0,0,.7), 0 0 28px rgba(200,255,0,.42), 0 0 70px rgba(0,240,255,.10);
 }
 
 /* ── Corner HUD lines ── */

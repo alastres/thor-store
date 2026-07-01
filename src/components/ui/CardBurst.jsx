@@ -56,11 +56,6 @@ export default function CardBurst() {
             width:     p.size,
             height:    p.size,
             background: p.color,
-            boxShadow: [
-              `0 0 ${p.size * 0.6}px #fff8`,
-              `0 0 ${p.size * 1.2}px ${p.color}`,
-              `0 0 ${p.size * 2.4}px ${p.color}77`,
-            ].join(', '),
           }}
         />
       ))}

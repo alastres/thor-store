@@ -18,9 +18,7 @@
   border-radius: 50%;
   top: 0;
   left: 0;
-  animation:
-    cardBurstMove var(--dur) ease-out var(--delay) infinite,
-    cardBurstPulse calc(var(--dur) * 1.5) ease-in-out var(--delay) infinite;
+  animation: cardBurstMove var(--dur) ease-out var(--delay) infinite;
 }
 
 @keyframes cardBurstMove {
@@ -28,9 +26,4 @@
   8%   { opacity: 0.75; }
   85%  { opacity: 0.4; }
   100% { transform: translate(var(--tx), var(--ty)) scale(0.15); opacity: 0; }
-}
-
-@keyframes cardBurstPulse {
-  0%, 100% { filter: brightness(1); }
-  50%      { filter: brightness(1.5) saturate(1.3); }
 }

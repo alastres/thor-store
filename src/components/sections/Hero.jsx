@@ -19,6 +19,8 @@ function HeroProductCard() {
   const photoRef = useRef(null)
   const textRef = useRef(null)
   const dotsRef = useRef(null)
+  const moveFrameRef = useRef(0)
+  const pointerRef = useRef({ x: 0, y: 0 })
   const [slide, setSlide] = useState(0)
 
   useEffect(() => {
@@ -26,37 +28,53 @@ function HeroProductCard() {
     return () => clearInterval(t)
   }, [])
 
+  useEffect(() => {
+    return () => {
+      if (moveFrameRef.current) cancelAnimationFrame(moveFrameRef.current)
+    }
+  }, [])
+
   const onMouseMove = useCallback((e) => {
-    const el = wrapRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const dx = ((e.clientX - rect.left) / rect.width  - 0.5) * 2
-    const dy = ((e.clientY - rect.top)  / rect.height - 0.5) * 2
-    cardRef.current?.classList.remove('resetting')
-    photoRef.current?.classList.remove('resetting')
-    textRef.current?.classList.remove('resetting')
-    dotsRef.current?.classList.remove('resetting')
-    if (cardRef.current) {
-      cardRef.current.style.transform =
-        `perspective(900px) rotateY(${dx * 10}deg) rotateX(${-dy * 6}deg) translateZ(8px)`
-    }
-    if (photoRef.current) {
-      photoRef.current.style.transform =
-        `perspective(900px) rotateY(${dx * 6}deg) rotateX(${-dy * 4}deg) translateX(${dx * 8}px) translateY(${dy * 6}px) scale(1.04)`
-    }
-    if (textRef.current) {
-      textRef.current.style.transform =
-        `perspective(700px) rotateY(${dx * 8}deg) rotateX(${-dy * 5}deg) translateX(${dx * 5}px) translateY(${dy * 4}px) translateZ(20px)`
-    }
-    if (dotsRef.current) {
-      dotsRef.current.style.transform =
-        `perspective(700px) rotateY(${dx * 8}deg) rotateX(${-dy * 5}deg) translateX(${dx * 5}px) translateY(${dy * 4}px) translateZ(20px)`
-    }
-    el.style.setProperty('--mx', `${((e.clientX - rect.left) / rect.width  * 100).toFixed(1)}%`)
-    el.style.setProperty('--my', `${((e.clientY - rect.top)  / rect.height * 100).toFixed(1)}%`)
+    pointerRef.current = { x: e.clientX, y: e.clientY }
+    if (moveFrameRef.current) return
+    moveFrameRef.current = requestAnimationFrame(() => {
+      moveFrameRef.current = 0
+      const { x, y } = pointerRef.current
+      const el = wrapRef.current
+      if (!el) return
+      const rect = el.getBoundingClientRect()
+      const dx = ((x - rect.left) / rect.width  - 0.5) * 2
+      const dy = ((y - rect.top)  / rect.height - 0.5) * 2
+      cardRef.current?.classList.remove('resetting')
+      photoRef.current?.classList.remove('resetting')
+      textRef.current?.classList.remove('resetting')
+      dotsRef.current?.classList.remove('resetting')
+      if (cardRef.current) {
+        cardRef.current.style.transform =
+          `perspective(900px) rotateY(${dx * 10}deg) rotateX(${-dy * 6}deg) translateZ(8px)`
+      }
+      if (photoRef.current) {
+        photoRef.current.style.transform =
+          `perspective(900px) rotateY(${dx * 6}deg) rotateX(${-dy * 4}deg) translateX(${dx * 8}px) translateY(${dy * 6}px) scale(1.04)`
+      }
+      if (textRef.current) {
+        textRef.current.style.transform =
+          `perspective(700px) rotateY(${dx * 8}deg) rotateX(${-dy * 5}deg) translateX(${dx * 5}px) translateY(${dy * 4}px) translateZ(20px)`
+      }
+      if (dotsRef.current) {
+        dotsRef.current.style.transform =
+          `perspective(700px) rotateY(${dx * 8}deg) rotateX(${-dy * 5}deg) translateX(${dx * 5}px) translateY(${dy * 4}px) translateZ(20px)`
+      }
+      el.style.setProperty('--mx', `${((x - rect.left) / rect.width  * 100).toFixed(1)}%`)
+      el.style.setProperty('--my', `${((y - rect.top)  / rect.height * 100).toFixed(1)}%`)
+    })
   }, [])
 
   const onMouseLeave = useCallback(() => {
+    if (moveFrameRef.current) {
+      cancelAnimationFrame(moveFrameRef.current)
+      moveFrameRef.current = 0
+    }
     cardRef.current?.classList.add('resetting')
     photoRef.current?.classList.add('resetting')
     textRef.current?.classList.add('resetting')
@@ -175,22 +193,23 @@ export default function Hero() {
         width: '100%', height: '100%',
         overflow: 'hidden',
         mixBlendMode: 'screen',
-        opacity: 0.6,
-        filter: 'hue-rotate(210deg) saturate(3)',
+        opacity: 0.68,
+        filter: 'hue-rotate(210deg) saturate(2.35)',
       }}>
         <DarkVeil
           hueShift={0}
-          speed={0.22}
-          warpAmount={0.35}
-          noiseIntensity={0.02}
-          resolutionScale={0.5}
+          speed={0.42}
+          warpAmount={0.55}
+          noiseIntensity={0.018}
+          resolutionScale={0.45}
+          maxFps={30}
         />
       </div>
 
       {/* Dark overlay restores brand bg while animation shows through */}
       <div style={{
         position: 'absolute', inset: 0, pointerEvents: 'none',
-        background: 'linear-gradient(135deg,rgba(6,6,8,.55) 0%,rgba(6,6,8,.25) 50%,rgba(6,6,8,.55) 100%)',
+        background: 'linear-gradient(135deg,rgba(6,6,8,.42) 0%,rgba(6,6,8,.12) 50%,rgba(6,6,8,.42) 100%)',
       }} />
 
       {/* Dot grid vignette */}

@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useRef, useState, useEffect } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import { Bag, List } from '@phosphor-icons/react'
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetClose } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
@@ -16,10 +16,16 @@ const NAV = [
 export default function Header() {
   const { totalItems } = useCart()
   const [scrolled, setScrolled] = useState(false)
-  const location = useLocation()
+  const scrolledRef = useRef(false)
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 24)
+    const fn = () => {
+      const next = window.scrollY > 24
+      if (next === scrolledRef.current) return
+      scrolledRef.current = next
+      setScrolled(next)
+    }
+    fn()
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
   }, [])
