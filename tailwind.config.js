@@ -18,7 +18,7 @@ export default {
       fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
       borderRadius: { lg: '12px', xl: '16px', '2xl': '20px' },
       keyframes: {
-        shimmer:     { '0%': { backgroundPosition: '200% center' }, '100%': { backgroundPosition: '-200% center' } },
+        shimmer:     { '0%': { backgroundPosition: '200% center' }, '100%': { backgroundPosition: '0% center' } },
         'float':     { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
         'pulse-dot': { '0%,100%': { opacity: '1' }, '50%': { opacity: '.3' } },
         'border-beam': { '0%': { backgroundPosition: '0% 50%' }, '100%': { backgroundPosition: '300% 50%' } },

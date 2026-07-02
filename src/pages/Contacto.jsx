@@ -106,7 +106,7 @@ export default function Contacto() {
                 </div>
                 <div>
                   <p className="text-[9px] font-bold tracking-[1.8px] uppercase mb-0.5" style={{ color }}>{label}</p>
-                  <p className="text-[12px] font-bold text-offwhite leading-snug">{value}</p>
+                   <p className="text-[12px] font-bold text-offwhite leading-snug break-words">{value}</p>
                   <p className="text-[10px] text-offwhite/30 mt-0.5">{sub}</p>
                 </div>
               </div>

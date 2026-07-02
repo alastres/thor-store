@@ -13,7 +13,6 @@ const buttonVariants = cva(
           'bg-[length:200%_auto] bg-gradient-to-r from-[#d4ff12] via-[#C9F105] to-[#d4ff12]',
           'shadow-[0_0_18px_rgba(201,241,5,.28)]',
           'hover:shadow-[0_0_28px_rgba(201,241,5,.5)] hover:scale-[1.03]',
-          'animate-shimmer',
         ],
         pink:  'bg-gradient-to-r from-[#ff3d95] to-[#FA2588] text-white shadow-[0_0_12px_rgba(250,37,136,.2)] hover:shadow-[0_0_22px_rgba(250,37,136,.4)] hover:scale-[1.03]',
         ghost: 'bg-white/5 border border-white/12 text-offwhite/65 hover:bg-white/10 hover:text-offwhite/90',
