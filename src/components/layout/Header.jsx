@@ -46,7 +46,7 @@ export default function Header() {
         }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
 
-          <Logo />
+          <Logo className="p-0.5" />
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-7">
@@ -83,7 +83,7 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent>
                 <SheetHeader>
-                  <Logo imageSize="h-8" textSize="text-[17px]" />
+                  <Logo size="sm" />
                 </SheetHeader>
                 <nav className="px-6 py-5 flex flex-col gap-1">
                   {NAV.map(n => (

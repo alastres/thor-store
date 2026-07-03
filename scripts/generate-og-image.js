@@ -6,7 +6,7 @@ import fs from 'fs'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 async function main() {
-  const logoPath = path.join(__dirname, '..', 'public', 'assets', 'logotipo.png')
+  const logoPath = path.join(__dirname, '..', 'public', 'assets', 'logo_main.svg')
   const outPath = path.join(__dirname, '..', 'public', 'assets', 'og-image.webp')
 
   if (!fs.existsSync(logoPath)) {

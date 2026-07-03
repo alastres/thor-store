@@ -1,21 +1,29 @@
 import { Link } from 'react-router-dom'
 import { asset } from '@/lib/assetUrl'
 
-export default function Logo({ imageSize = 'h-9', textSize = 'text-[30px]' }) {
+const SIZES = {
+  sm: 'h-12 w-auto',
+  md: 'h-14 w-auto',
+  lg: 'h-28 w-auto',
+  xl: 'w-full max-w-[360px] h-auto object-contain',
+  full: 'w-full h-auto object-contain',
+}
+
+export default function Logo({ size = 'md', linked = true, className = '', glow = false }) {
+  const image = (
+    <img
+      src={asset('assets/logo_main.svg')}
+      alt="La Cocina de Thor"
+      className={`${SIZES[size] || SIZES.md} ${glow ? 'logo-glow-pulse' : ''}`}
+      style={glow ? undefined : { filter: 'drop-shadow(0 0 8px rgba(201,241,5,.5))' }}
+    />
+  )
+
+  if (!linked) return image
+
   return (
-    <Link to="/" className="flex items-center gap-2.5 shrink-0">
-      <img
-        src={asset('assets/isotipo.webp')}
-        alt="Thor"
-        className={`${imageSize} w-auto`}
-        style={{ filter: 'drop-shadow(0 0 8px rgba(201,241,5,.5))' }}
-      />
-      <div className="flex flex-col leading-none gap-[2px]">
-        <span className="text-[8px] font-bold tracking-[2.5px] text-white/60 uppercase ml-0.5">La Cocina de</span>
-        <span className={`${textSize} font-black tracking-[1px] uppercase text-lime`} style={{ textShadow: '0 0 10px rgba(201,241,5,.45)' }}>
-          TH<span className="text-white">O</span>R
-        </span>
-      </div>
+    <Link to="/" className={`flex items-center shrink-0 ${className}`}>
+      {image}
     </Link>
   )
 }

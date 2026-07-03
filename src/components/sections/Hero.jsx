@@ -4,6 +4,7 @@ import { ShieldCheck, Star, CheckCircle, ArrowRight, PawPrint, Heart, Fire, Stor
 import { Button } from '@/components/ui/button'
 import DarkVeil from '@/components/ui/DarkVeil'
 import CardBurst from '@/components/ui/CardBurst'
+import Logo from '@/components/ui/Logo'
 import { asset } from '@/lib/assetUrl'
 import './HeroCard.css'
 
@@ -165,10 +166,7 @@ function HeroProductCard() {
 
           {/* ── Logo centrado y grande ── */}
           <div className="flex items-center justify-center px-6 py-6">
-            <img src={asset('assets/logotipo.webp')} alt="La Cocina de Thor"
-              className="w-full object-contain"
-              style={{ filter: 'drop-shadow(0 0 18px rgba(201,241,5,.45))' }}
-            />
+            <Logo size="full" linked={false} glow />
           </div>
         </div>
       </div>
@@ -223,8 +221,13 @@ export default function Hero() {
       {/* ── Content grid ── */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-16 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center" style={{ minHeight: '580px' }}>
 
+        {/* Logo — centrado arriba, solo en móvil (en desktop ya aparece dentro del HeroProductCard) */}
+        <div className="min-w-0 flex justify-center mb-2 lg:hidden">
+          <Logo size="lg" linked={false} glow />
+        </div>
+
         {/* Copy */}
-        <div className="animate-fade-up self-start lg:mt-6" style={{ animationDelay: '0ms', animationFillMode: 'both' }}>
+        <div className="animate-fade-up self-start lg:mt-6 text-center lg:text-left" style={{ animationDelay: '0ms', animationFillMode: 'both' }}>
           <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6"
             style={{ background: 'linear-gradient(90deg,rgba(0,240,255,.07),rgba(200,255,0,.07))', border: '1px solid rgba(0,240,255,.2)' }}>
             <span className="w-2 h-2 rounded-full animate-pulse-dot" style={{ background: '#00F0FF', boxShadow: '0 0 6px rgba(0,240,255,.8)' }} />
@@ -242,7 +245,7 @@ export default function Hero() {
             <Fire size={14} weight="fill" style={{ color: '#FF6B00', display: 'inline', verticalAlign: 'middle' }} /> 15 años y 10,000+ animales felices nos avalan.
           </p>
 
-          <div className="relative flex flex-wrap items-center gap-2 sm:gap-3 mb-7" style={{ isolation: 'isolate' }}>
+          <div className="relative flex flex-wrap items-center gap-2 sm:gap-3 mb-7 w-fit mx-auto lg:w-auto lg:mx-0" style={{ isolation: 'isolate' }}>
             {/* Glow pulsante detrás del CTA principal */}
             <span className="absolute rounded-full pointer-events-none cta-glow-pulse"
               style={{ left: '4px', top: '50%', width: '150px', height: '46px', transform: 'translateY(-50%)', zIndex: -1 }} />
@@ -261,7 +264,7 @@ export default function Hero() {
             </Button>
           </div>
 
-          <div className="flex flex-wrap gap-x-2.5 gap-y-2 sm:gap-5">
+          <div className="flex flex-wrap justify-center lg:justify-start gap-x-2.5 gap-y-2 sm:gap-5">
             {[
               [CheckCircle, 'Certificado',  '#C8FF00', 'rgba(200,255,0,.15)'],
               [Star,        '10K+ Felices', '#FFD700', 'rgba(255,215,0,.15)'],

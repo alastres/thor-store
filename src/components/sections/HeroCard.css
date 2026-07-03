@@ -23,6 +23,15 @@
   animation: ctaGlowPulse 2.4s ease-in-out infinite;
 }
 
+/* ── Logo glow pulse — soft lime breathing glow behind the Hero logo ── */
+@keyframes logoGlowPulse {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(201,241,5,.45)); }
+  50%      { filter: drop-shadow(0 0 20px rgba(201,241,5,.85)); }
+}
+.logo-glow-pulse {
+  animation: logoGlowPulse 2.6s ease-in-out infinite;
+}
+
 /* ── Rotating rings ── */
 @keyframes spinCW  { to { transform: rotate(360deg);  } }
 @keyframes spinCCW { to { transform: rotate(-360deg); } }
