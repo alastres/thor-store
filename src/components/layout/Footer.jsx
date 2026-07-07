@@ -54,7 +54,6 @@ const COL = [
     ['Quiénes somos', '/nosotros'],
     ['Blog', '/'],
     ['Contacto', '/contacto'],
-    ['Amazon', 'https://www.amazon.es/s?k=alfcan&crid=1F5D57SH968BS&sprefix=%2Caps%2C140&ref=nb_sb_ss_recent_1_0_recent'],
   ] },
 ]
 

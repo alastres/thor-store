@@ -1,6 +1,5 @@
-import { PawPrint, Certificate, Leaf, Headset, ArrowSquareOut } from '@phosphor-icons/react'
+import { PawPrint, Certificate, Leaf, Headset } from '@phosphor-icons/react'
 import BorderGlow from '@/components/ui/BorderGlow'
-import { Button } from '@/components/ui/button'
 
 const FEATURES = [
   { Icon: PawPrint,    title: 'Son nuestros compañeros', desc: 'Probados primero por nuestros peludos.', color: '#C8FF00', bg: 'rgba(200,255,0,.07)',   border: 'rgba(200,255,0,.14)'   },
@@ -26,11 +25,6 @@ export default function WhyUs() {
           <p className="text-[14px] leading-relaxed text-offwhite/38 mb-8 max-w-md">
             Todos nuestros productos tienen las mismas condiciones sanitarias y de calidad que los alimentos para personas.
           </p>
-          <Button variant="lime" size="md" asChild>
-            <a href="https://www.amazon.es/s?k=alfcan&crid=1F5D57SH968BS&sprefix=%2Caps%2C140&ref=nb_sb_ss_recent_1_0_recent" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-              <ArrowSquareOut size={14} weight="bold"/> Comprar en Amazon
-            </a>
-          </Button>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
